@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'numo/narray'
+
 require_relative 'optimize/version'
 require_relative 'optimize/optimize'
 
