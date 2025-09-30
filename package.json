@@ -1,0 +1,15 @@
+{
+  "name": "numo-optimize",
+  "repository": "git@github.com:yoshoku/numo-optimize.git",
+  "author": "Atsushi Tatsuma <yoshoku@outlook.com>",
+  "license": "BSD-3-Clause",
+  "private": true,
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "husky": "^9.1.7"
+  }
+}
