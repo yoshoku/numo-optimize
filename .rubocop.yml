@@ -9,3 +9,7 @@ AllCops:
 
 Gemspec/RequiredRubyVersion:
   Enabled: false
+
+Style/GlobalVars:
+  Exclude:
+    - 'ext/**/*'
