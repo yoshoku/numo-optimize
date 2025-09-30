@@ -9,4 +9,14 @@ require 'rubocop/rake_task'
 
 RuboCop::RakeTask.new
 
-task default: %i[test rubocop]
+require 'rake/extensiontask'
+
+task build: :compile # rubocop:disable Rake/Desc
+
+GEMSPEC = Gem::Specification.load('numo-optimize.gemspec')
+
+Rake::ExtensionTask.new('numo/optimize', GEMSPEC) do |ext|
+  ext.lib_dir = 'lib/numo/optimize'
+end
+
+task default: %i[clobber compile test]

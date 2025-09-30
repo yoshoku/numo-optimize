@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'optimize/version'
+require_relative 'optimize/optimize'
 
 module Numo
   module Optimize
