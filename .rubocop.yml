@@ -15,6 +15,30 @@ Layout/LineLength:
   Exclude:
     - numo-optimize.gemspec
 
+Metrics/AbcSize:
+  Max: 40
+  Exclude:
+    - 'test/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'test/**/*'
+    - '*.gemspec'
+
+Metrics/CyclomaticComplexity:
+  Max: 16
+
+Metrics/MethodLength:
+  Max: 40
+  Exclude:
+    - 'test/**/*'
+
+Metrics/ParameterLists:
+  Max: 16
+
+Metrics/PerceivedComplexity:
+  Max: 16
+
 Naming/MethodParameterName:
   Enabled: false
 
