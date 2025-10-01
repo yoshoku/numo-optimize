@@ -23,7 +23,36 @@ gem install numo-optimize
 
 ## Usage
 
-TODO: Write usage instructions here
+example.rb:
+
+```ruby
+require 'numo/narray'
+require 'numo/optimize'
+
+# Define the objective function.
+obj_func = proc do |x|
+  (x - 3)**2 + 2
+end
+
+# Define the gradient (Jacobian) of the objective function.
+gradient_func = proc do |x|
+  2 * (x - 3)
+end
+
+# Initial guess
+x_init = Numo::DFloat[0.0]
+
+# Perform optimization
+result = Numo::Optimize.minimize(x_init: x_init, fnc: obj_func, jcb: gradient_func)
+
+# Output the result
+puts "Optimized parameters: #{result[:x][0]}"
+```
+
+```sh
+$ ruby example.rb
+Optimized parameters: 3.0
+```
 
 ## Contributing
 
