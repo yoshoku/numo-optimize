@@ -1,11 +1,10 @@
-name: Ruby
+name: build
 
 on:
   push:
     branches:
       - main
       - dev*
-
   pull_request:
 
 jobs:
@@ -14,15 +13,69 @@ jobs:
     name: Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
-        ruby:
-          - '3.4.6'
-
+        ruby: [ '3.2', '3.3', '3.4' ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run the default task
+        run: bundle exec rake
+
+  build-int64:
+    runs-on: ubuntu-latest
+    name: Ruby 3.4 (int64)
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
+          bundler-cache: true
+      - name: Run the default task
+        run: bundle exec rake -- --with-use-int64
+
+  build-blas:
+    runs-on: ubuntu-latest
+    name: Ruby 3.4 (OpenBLAS)
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install OpenBLAS
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libopenblas-dev
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
+          bundler-cache: true
+      - name: Run the default task
+        run: bundle exec rake -- --with-blas-lib=openblas
+
+  build-win:
+    runs-on: windows-latest
+    name: Ruby 3.4 (Windows)
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
+          bundler-cache: true
+      - name: Run the default task
+        run: bundle exec rake
+
+  build-mac:
+    runs-on: macos-latest
+    name: Ruby 3.4 (macOS)
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
           bundler-cache: true
       - name: Run the default task
         run: bundle exec rake
