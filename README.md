@@ -5,6 +5,8 @@ This gem is based on [Lbfgsb.rb](https://github.com/yoshoku/lbfgsb.rb) and
 [mopti](https://github.com/yoshoku/mopti) by the same author.
 As for optimization algorithms, only L-BFGS-B is currently supported.
 
+Please note that numo-optimize depends on [numo-narray-alt](https://github.com/yoshoku/numo-narray-alt), not Numo::NArray.
+
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
