@@ -1,7 +1,9 @@
 # Numo::Optimize
 
+[![Gem Version](https://badge.fury.io/rb/numo-optimize.svg?icon=si%3Arubygems)](https://badge.fury.io/rb/numo-optimize)
 [![Build Status](https://github.com/yoshoku/numo-optimize/actions/workflows/main.yml/badge.svg)](https://github.com/yoshoku/numo-optimize/actions/workflows/main.yml)
 [![BSD 3-Clause License](https://img.shields.io/badge/License-BSD%203--Clause-orange.svg)](https://github.com/yoshoku/numo-optimize/blob/main/LICENSE.txt)
+[![Documentation](https://img.shields.io/badge/api-reference-blue.svg)](https://gemdocs.org/gems/numo-optimize/)
 
 Numo::Optimize (numo-optimize) provides functions for minimizing objective functions.
 This gem is based on [Lbfgsb.rb](https://github.com/yoshoku/lbfgsb.rb) and
