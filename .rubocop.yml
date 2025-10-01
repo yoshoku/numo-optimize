@@ -11,6 +11,7 @@ Gemspec/RequiredRubyVersion:
   Enabled: false
 
 Layout/LineLength:
+  AllowedPatterns: ['(\A|\s)#']
   Exclude:
     - numo-optimize.gemspec
 
