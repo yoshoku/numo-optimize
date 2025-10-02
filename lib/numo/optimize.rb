@@ -42,6 +42,39 @@ module Numo
       private_class_method :fnc, :jcb
     end
 
+    # Scg module provides functions for minimization using scaled conjugate gradient (SCG) algorithm.
+    module Scg
+      module_function
+
+      # @!visibility private
+      def fnc(fnc, x, args)
+        if args.is_a?(Hash)
+          fnc.call(x, **args)
+        elsif args.is_a?(Array)
+          fnc.call(x, *args)
+        elsif args.nil?
+          fnc.call(x)
+        else
+          fnc.call(x, args)
+        end
+      end
+
+      # @!visibility private
+      def jcb(jcb, x, args)
+        if args.is_a?(Hash)
+          jcb.call(x, **args)
+        elsif args.is_a?(Array)
+          jcb.call(x, *args)
+        elsif args.nil?
+          jcb.call(x)
+        else
+          jcb.call(x, args)
+        end
+      end
+
+      private_class_method :fnc, :jcb
+    end
+
     module_function
 
     # Minimize the given function.

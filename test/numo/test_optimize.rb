@@ -170,5 +170,51 @@ module Numo
       assert_equal(n, result[:x].size)
       assert_equal(n, result[:jcb].size)
     end
+
+    def test_minimize_scg
+      x = Numo::DFloat.zeros(2)
+      args = [2, 3, 7, 8, 9, 10]
+      fnc = proc do |x, a, b, c, d, e, f|
+        u = x[0]
+        v = x[1]
+        (a * (u**2)) + (b * u * v) + (c * (v**2)) + (d * u) + (e * v) + f
+      end
+      jcb = proc do |x, a, b, c, d, e, _f|
+        u = x[0]
+        v = x[1]
+        gu = (2 * a * u) + (b * v) + d
+        gv = (b * u) + (2 * c * v) + e
+        Numo::DFloat[gu, gv]
+      end
+      result = Numo::Optimize::Scg.fmin(fnc, x, jcb, args, 1e-6, 1e-8, 1e-7, 200)
+      error = (result[:x] - Numo::DFloat[-1.80847, -0.25533]).abs.max
+
+      assert_operator(error, :<, 1e-4)
+      assert_in_delta(1.61702127, result[:fnc], 1e-6)
+      assert_equal(9, result[:n_iter])
+      assert_equal(10, result[:n_fev])
+      assert_equal(18, result[:n_jev])
+
+      fnc = proc do |x, a, b, c, d, e, f|
+        # function value
+        u = x[0]
+        v = x[1]
+        f = (a * (u**2)) + (b * u * v) + (c * (v**2)) + (d * u) + (e * v) + f
+        # gradient vector
+        gu = (2 * a * u) + (b * v) + d
+        gv = (b * u) + (2 * c * v) + e
+        g = Numo::DFloat[gu, gv]
+        # return set of value and vector
+        [f, g]
+      end
+      result = Numo::Optimize::Scg.fmin(fnc, x, true, args, 1e-6, 1e-8, 1e-7, 200)
+      error = (result[:x] - Numo::DFloat[-1.80847, -0.25533]).abs.max
+
+      assert_operator(error, :<, 1e-4)
+      assert_in_delta(1.61702127, result[:fnc], 1e-6)
+      assert_equal(9, result[:n_iter])
+      assert_equal(10, result[:n_fev])
+      assert_equal(18, result[:n_jev])
+    end
   end
 end
