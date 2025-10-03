@@ -186,7 +186,7 @@ module Numo
         gv = (b * u) + (2 * c * v) + e
         Numo::DFloat[gu, gv]
       end
-      result = Numo::Optimize::Scg.fmin(fnc, x, jcb, args, 1e-6, 1e-8, 1e-7, 200)
+      result = Numo::Optimize.minimize(method: 'SCG', fnc: fnc, x_init: x, jcb: jcb, args: args)
       error = (result[:x] - Numo::DFloat[-1.80847, -0.25533]).abs.max
 
       assert_operator(error, :<, 1e-4)
@@ -207,7 +207,7 @@ module Numo
         # return set of value and vector
         [f, g]
       end
-      result = Numo::Optimize::Scg.fmin(fnc, x, true, args, 1e-6, 1e-8, 1e-7, 200)
+      result = Numo::Optimize.minimize(method: 'SCG', fnc: fnc, x_init: x, jcb: true, args: args)
       error = (result[:x] - Numo::DFloat[-1.80847, -0.25533]).abs.max
 
       assert_operator(error, :<, 1e-4)
