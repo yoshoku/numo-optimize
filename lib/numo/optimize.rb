@@ -6,6 +6,7 @@ require_relative 'optimize/version'
 require_relative 'optimize/optimize'
 require_relative 'optimize/lbfgsb'
 require_relative 'optimize/scg'
+require_relative 'optimize/nelder_mead'
 
 # Ruby/Numo (NUmerical MOdules)
 module Numo

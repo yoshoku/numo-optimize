@@ -216,5 +216,22 @@ module Numo
       assert_equal(10, result[:n_fev])
       assert_equal(18, result[:n_jev])
     end
+
+    def test_fmin_nelder_mead
+      x = Numo::DFloat.zeros(2)
+      args = [2, 3, 7, 8, 9, 10]
+      fnc = proc do |x, a, b, c, d, e, f|
+        u = x[0]
+        v = x[1]
+        (a * (u**2)) + (b * u * v) + (c * (v**2)) + (d * u) + (e * v) + f
+      end
+      result = Numo::Optimize::NelderMead.fmin(fnc, x, args)
+      error = (result[:x] - Numo::DFloat[-1.80847, -0.25533]).abs.max
+
+      assert_operator(error, :<, 1e-4)
+      assert_in_delta(1.61702127, result[:fnc], 1e-6)
+      assert_equal(78, result[:n_iter])
+      assert_equal(154, result[:n_fev])
+    end
   end
 end
