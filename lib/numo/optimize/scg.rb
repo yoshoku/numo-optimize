@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# Ruby/Numo (NUmerical MOdules)
 module Numo
-  # Numo::Optimize provides functions for minimizing objective functions.
   module Optimize
     # Scg module provides functions for minimization using scaled conjugate gradient (SCG) algorithm.
     module Scg

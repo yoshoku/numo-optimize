@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# Ruby/Numo (NUmerical MOdules)
 module Numo
-  # Numo::Optimize provides functions for minimizing objective functions.
   module Optimize
     # Lbfgsb module provides functions for minimization using L-BFGS-B algorithm.
     module Lbfgsb
