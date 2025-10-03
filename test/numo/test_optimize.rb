@@ -4,7 +4,7 @@ require 'test_helper'
 
 module Numo
   class TestOptimize < Minitest::Test # rubocop:disable Metrics/ClassLength
-    def test_minimize_lbfgbs_driver1
+    def test_minimize_lbfgsb_driver1
       n = 25
       m = 5
       x = Numo::DFloat.zeros(n) + 3
@@ -77,7 +77,7 @@ module Numo
       assert_kind_of(Numo::DFloat, result[:jcb])
     end
 
-    def test_minimize_lbfgbs_driver2
+    def test_minimize_lbfgsb_driver2
       n = 25
       m = 5
       pgtol = (5.80702e-15 + 1) * 1e-10
@@ -122,7 +122,7 @@ module Numo
       assert_kind_of(Numo::DFloat, result[:jcb])
     end
 
-    def test_minimize_lbfgbs_driver3
+    def test_minimize_lbfgsb_driver3
       n = 1000
       m = 10
       pgtol = (5.35267e-22 + 1) * 1e-10
