@@ -20,7 +20,7 @@ module Numo
     # @param x_init [Numo::DFloat] (shape: [n_elements]) Initial point.
     # @param jcb [Method/Proc/Boolean] Method for calculating the gradient vector.
     #   If true is given, fnc is assumed to return the function value and gardient vector as [f, g] array.
-    # @param method [String] Type of algorithm. 'L-BFGS-B' or 'SCG' is available.
+    # @param method [String] Type of algorithm. 'L-BFGS-B', 'SCG', or 'Nelder-Mead' is available.
     # @param args [Object] Arguments pass to the 'fnc' and 'jcb'.
     # @param bounds [Numo::DFloat/Nil] (shape: [n_elements, 2])
     #   \[lower, upper\] bounds for each element x. If nil is given, x is unbounded.
@@ -38,8 +38,8 @@ module Numo
     #   where pg_i is the ith component of the projected gradient.
     #   This argument is only used 'L-BFGS-B' method.
     # @param maxcor [Integer] The maximum number of variable metric corrections used to define the limited memory matrix. This argument is only used 'L-BFGS-B' method.
-    # @param xtol [Float] Tolerance for termination by the change of the optimal vector norm. This argument is only used 'SCG' method.
-    # @param ftol [Float] Tolerance for termination by the change of the objective function value. This argument is only used 'SCG' method.
+    # @param xtol [Float] Tolerance for termination by the change of the optimal vector norm. This argument is used 'SCG' and 'Nelder-Mead' methods.
+    # @param ftol [Float] Tolerance for termination by the change of the objective function value. This argument is used 'SCG' and 'Nelder-Mead' methods
     # @param jtol [Float] Tolerance for termination by the norm of the gradient vector. This argument is only used 'SCG' method.
     # @param maxiter [Integer] The maximum number of iterations.
     # @param verbose [Integer/Nil] If negative value or nil is given, no display output is generated. This argument is only used 'L-BFGS-B' method.
@@ -83,6 +83,8 @@ module Numo
 
         Numo::Optimize::Lbfgsb.fmin(fnc, x_init.dup, jcb, args, l, u, nbd, maxcor,
                                     factr, pgtol, maxiter, verbose)
+      when 'neldermead'
+        Numo::Optimize::NelderMead.fmin(fnc, x_init.dup, args, maxiter, xtol, ftol)
       when 'scg'
         Numo::Optimize::Scg.fmin(fnc, x_init.dup, jcb, args, xtol, ftol, jtol, maxiter)
       else
