@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'mkmf'
-require 'numo/narray'
+require 'numo/narray/alt'
 
 $LOAD_PATH.each do |lp|
   if File.exist?(File.join(lp, 'numo/numo/narray.h'))
