@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.extensions = ['ext/numo/optimize/extconf.rb']
 
-  spec.add_dependency 'numo-narray-alt', '~> 0.9.3'
+  spec.add_dependency 'numo-narray-alt', '~> 0.9.9'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
