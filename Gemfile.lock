@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    numo-optimize (0.2.0)
+    numo-optimize (0.2.1)
       numo-narray-alt (~> 0.9.9)
 
 GEM
