@@ -16,6 +16,9 @@ jobs:
       - name: Set up asdf
         uses: asdf-vm/actions/setup@v4
       - name: Set up Ruby using asdf
+        env:
+          CC: /usr/bin/clang
+          CXX: /usr/bin/clang++
         run: |
           asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
           asdf install ruby 3.2.2
@@ -26,3 +29,14 @@ jobs:
           bundle exec rake
       - name: Install gem
         run: gem install numo-optimize
+      - name: Check compiler
+        run: |
+          which cc
+          cc --version
+          which clang
+          clang --version
+          ls -la /opt/homebrew/opt/llvm/bin/clang || true
+          ls -la /usr/local/opt/llvm/bin/clang || true
+          ruby -rrbconfig -e 'puts RbConfig::CONFIG["CC"]'
+          ruby -rrbconfig -e 'puts RbConfig::CONFIG["CFLAGS"]'
+          nm -gU $(ruby -e "puts Gem::Specification.find_by_name('numo-narray-alt').gem_dir")/lib/numo/narray/narray.bundle | grep nary_
