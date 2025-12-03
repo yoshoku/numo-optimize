@@ -5,6 +5,6 @@ module Numo
   # Numo::Optimize provides functions for minimizing objective functions.
   module Optimize
     # The version of numo-optimize you install.
-    VERSION = '0.2.2'
+    VERSION = '0.2.3'
   end
 end

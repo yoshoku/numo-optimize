@@ -1,3 +1,7 @@
+## [[0.2.3](https://github.com/yoshoku/numo-optimize/compare/v0.2.2...v0.2.3)] - 2025-12-03
+
+- Update CFLAGS and LDFLAGS for native extensions to match those in [lbfgsb.rb](https://github.com/yoshoku/lbfgsb.rb).
+
 ## [[0.2.2](https://github.com/yoshoku/numo-optimize/compare/v0.2.1...v0.2.2)] - 2025-11-18
 
 - Fix to use require for compatibility with distributions installing extensions separately.
