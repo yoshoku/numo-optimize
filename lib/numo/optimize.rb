@@ -2,11 +2,11 @@
 
 require 'numo/narray/alt'
 
-# On distributions like Rocky Linux, native extensions are installed in a separate
-# directory from Ruby code, so use require to load them.
+require_relative 'optimize/version'
+# On RHEL-based Linux distributions, native extensions are installed in a separate
+# directory from Ruby scripts, so use require to load them.
 require 'numo/optimize/optimize'
 
-require_relative 'optimize/version'
 require_relative 'optimize/lbfgsb'
 require_relative 'optimize/scg'
 require_relative 'optimize/nelder_mead'
