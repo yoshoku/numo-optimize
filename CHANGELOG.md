@@ -1,3 +1,7 @@
+## [[0.3.0](https://github.com/yoshoku/numo-optimize/compare/v0.2.3...v0.3.0)] - 2026-02-06
+
+- relax numo-narray-alt version constraint to >= 0.9.9, < 0.11.0.
+
 ## [[0.2.3](https://github.com/yoshoku/numo-optimize/compare/v0.2.2...v0.2.3)] - 2025-12-03
 
 - Update CFLAGS and LDFLAGS for native extensions to match those in [lbfgsb.rb](https://github.com/yoshoku/lbfgsb.rb).
