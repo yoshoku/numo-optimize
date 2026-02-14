@@ -25,4 +25,4 @@ jobs:
           ruby-version: 3.4
           bundler-cache: true
       - name: Run the default task
-        run: bundle exec rake
+        run: bundle exec rake test:valgrind
